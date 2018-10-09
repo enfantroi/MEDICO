@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E8B8C42-FBF2-4CB1-9E0D-C9FE93310230}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MEDICO</RootNamespace>
+    <AssemblyName>MEDICO</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Web.UI, Version=2013.1.220.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q1 2013\Bin45\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\CreatDoctor.aspx" />
+    <Content Include="Account\CreatPatient.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="contact.aspx" />
+    <Content Include="css\add_doc_style.css" />
+    <Content Include="css\bootstrap-responsive.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\style.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="img\avatar.png" />
+    <Content Include="img\back_main.png" />
+    <Content Include="img\cab\2_cab1.jpg" />
+    <Content Include="img\cab\3_cab2.jpg" />
+    <Content Include="img\cab\5_cab5.jpg" />
+    <Content Include="img\cab\6_cab6.png" />
+    <Content Include="img\cab\7_cab7.png" />
+    <Content Include="img\cab\8_cab8.jpg" />
+    <Content Include="img\cab\cabinet.png" />
+    <Content Include="img\compte.png" />
+    <Content Include="img\defaultAvatar.png" />
+    <Content Include="img\doctor.png" />
+    <Content Include="img\doc\doctor.png" />
+    <Content Include="img\glyphicons-halflings-white.png" />
+    <Content Include="img\glyphicons-halflings.png" />
+    <Content Include="img\Homepage.png" />
+    <Content Include="img\hospital.png" />
+    <Content Include="img\index.png" />
+    <Content Include="img\login.png" />
+    <Content Include="img\logout.png" />
+    <Content Include="img\medico_mini.png" />
+    <Content Include="img\medico.png" />
+    <Content Include="img\patient.png" />
+    <Content Include="img\pat\patient.png" />
+    <Content Include="img\profile.png" />
+    <Content Include="img\search.png" />
+    <Content Include="img\sec\secretaire.png" />
+    <Content Include="img\small_line.png" />
+    <Content Include="js\bootstrap.file-input.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\getmap.js" />
+    <Content Include="js\google_dynamic_map.js" />
+    <Content Include="js\google_map.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\ShearchBoxCabinet.js" />
+    <Content Include="LesCabinets.aspx" />
+    <Content Include="MedecinOps\Default.aspx" />
+    <Content Include="MedecinOps\GestionSecretaire.aspx" />
+    <Content Include="MedecinOps\MonProfile.aspx" />
+    <Content Include="MedecinOps\MonCabinet.aspx" />
+    <Content Include="MedicoModel.edmx.sql" />
+    <Content Include="PatientOps\Default.aspx" />
+    <Content Include="PatientOps\Step1.aspx" />
+    <Content Include="PatientOps\Step2.aspx" />
+    <Content Include="SecretaireOps\Default.aspx" />
+    <Content Include="SecretaireOps\LesRendezVous.aspx" />
+    <Content Include="UnCabinet.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\CreatDoctor.aspx.cs">
+      <DependentUpon>CreatDoctor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatDoctor.aspx.designer.cs">
+      <DependentUpon>CreatDoctor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\CreatPatient.aspx.cs">
+      <DependentUpon>CreatPatient.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\CreatPatient.aspx.designer.cs">
+      <DependentUpon>CreatPatient.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RadScheduler.Main.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RadScheduler.Main.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\RadScheduler.Main.fr-FR.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RadScheduler.Main.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Cabinet.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CabinetService.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Compte.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="contact.aspx.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="contact.aspx.designer.cs">
+      <DependentUpon>contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Data.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LesCabinets.aspx.cs">
+      <DependentUpon>LesCabinets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LesCabinets.aspx.designer.cs">
+      <DependentUpon>LesCabinets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medecin.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedecinOps\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedecinOps\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedecinOps\GestionSecretaire.aspx.cs">
+      <DependentUpon>GestionSecretaire.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedecinOps\GestionSecretaire.aspx.designer.cs">
+      <DependentUpon>GestionSecretaire.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedecinOps\MonProfile.aspx.cs">
+      <DependentUpon>MonProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedecinOps\MonProfile.aspx.designer.cs">
+      <DependentUpon>MonProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MedecinOps\MonCabinet.aspx.cs">
+      <DependentUpon>MonCabinet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MedecinOps\MonCabinet.aspx.designer.cs">
+      <DependentUpon>MonCabinet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Medico.Master.cs">
+      <DependentUpon>Medico.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Medico.Master.designer.cs">
+      <DependentUpon>Medico.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MedicoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedicoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedicoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicoModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Patient.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientOps\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatientOps\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientOps\Step1.aspx.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatientOps\Step1.aspx.designer.cs">
+      <DependentUpon>Step1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PatientOps\Step2.aspx.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PatientOps\Step2.aspx.designer.cs">
+      <DependentUpon>Step2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Personne.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RendezVous.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Secretaire.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SecretaireOps\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecretaireOps\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SecretaireOps\LesRendezVous.aspx.cs">
+      <DependentUpon>LesRendezVous.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecretaireOps\LesRendezVous.aspx.designer.cs">
+      <DependentUpon>LesRendezVous.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Specialite.cs">
+      <DependentUpon>MedicoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnCabinet.aspx.cs">
+      <DependentUpon>UnCabinet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UnCabinet.aspx.designer.cs">
+      <DependentUpon>UnCabinet.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="MedicoModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MedicoModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="MedicoModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedicoModel.edmx</DependentUpon>
+      <LastGenOutput>MedicoModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="MedicoModel.edmx.diagram">
+      <DependentUpon>MedicoModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="MedicoModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MedicoModel.edmx</DependentUpon>
+      <LastGenOutput>MedicoModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Medico.Master" />
+    <Content Include="MedecinOps\Web.config" />
+    <Content Include="PatientOps\Web.config" />
+    <Content Include="SecretaireOps\Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\RadScheduler.Main.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RadScheduler.Main.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\RadScheduler.Main.fr-FR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>RadScheduler.Main.fr-FR.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49979</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49408/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

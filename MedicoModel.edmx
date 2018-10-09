@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MedicoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="MedicoModelStoreContainer">
+          <EntitySet Name="Cabinets" EntityType="MedicoModel.Store.Cabinets" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Comptes" EntityType="MedicoModel.Store.Comptes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnes" EntityType="MedicoModel.Store.Personnes" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnes_CabinetService" EntityType="MedicoModel.Store.Personnes_CabinetService" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnes_Medecin" EntityType="MedicoModel.Store.Personnes_Medecin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnes_Patient" EntityType="MedicoModel.Store.Personnes_Patient" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Personnes_Secretaire" EntityType="MedicoModel.Store.Personnes_Secretaire" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RendezVouss" EntityType="MedicoModel.Store.RendezVouss" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Specialites" EntityType="MedicoModel.Store.Specialites" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CabinetCabinetService" Association="MedicoModel.Store.FK_CabinetCabinetService">
+            <End Role="Cabinets" EntitySet="Cabinets" />
+            <End Role="Personnes_CabinetService" EntitySet="Personnes_CabinetService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CabinetService_inherits_Personne" Association="MedicoModel.Store.FK_CabinetService_inherits_Personne">
+            <End Role="Personnes" EntitySet="Personnes" />
+            <End Role="Personnes_CabinetService" EntitySet="Personnes_CabinetService" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComptePersonne" Association="MedicoModel.Store.FK_ComptePersonne">
+            <End Role="Personnes" EntitySet="Personnes" />
+            <End Role="Comptes" EntitySet="Comptes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medecin_inherits_CabinetService" Association="MedicoModel.Store.FK_Medecin_inherits_CabinetService">
+            <End Role="Personnes_CabinetService" EntitySet="Personnes_CabinetService" />
+            <End Role="Personnes_Medecin" EntitySet="Personnes_Medecin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedecinRendezVous" Association="MedicoModel.Store.FK_MedecinRendezVous">
+            <End Role="Personnes_Medecin" EntitySet="Personnes_Medecin" />
+            <End Role="RendezVouss" EntitySet="RendezVouss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedecinSpecialite" Association="MedicoModel.Store.FK_MedecinSpecialite">
+            <End Role="Specialites" EntitySet="Specialites" />
+            <End Role="Personnes_Medecin" EntitySet="Personnes_Medecin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Patient_inherits_Personne" Association="MedicoModel.Store.FK_Patient_inherits_Personne">
+            <End Role="Personnes" EntitySet="Personnes" />
+            <End Role="Personnes_Patient" EntitySet="Personnes_Patient" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientRendezVous" Association="MedicoModel.Store.FK_PatientRendezVous">
+            <End Role="Personnes_Patient" EntitySet="Personnes_Patient" />
+            <End Role="RendezVouss" EntitySet="RendezVouss" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Secretaire_inherits_CabinetService" Association="MedicoModel.Store.FK_Secretaire_inherits_CabinetService">
+            <End Role="Personnes_CabinetService" EntitySet="Personnes_CabinetService" />
+            <End Role="Personnes_Secretaire" EntitySet="Personnes_Secretaire" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cabinets">
+          <Key>
+            <PropertyRef Name="idCabinet" />
+          </Key>
+          <Property Name="idCabinet" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ville" Type="int" Nullable="false" />
+          <Property Name="code_postale" Type="int" />
+          <Property Name="photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="geoLocationX" Type="float" Nullable="false" />
+          <Property Name="geoLocationY" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Comptes">
+          <Key>
+            <PropertyRef Name="idCompte" />
+          </Key>
+          <Property Name="idCompte" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="motDePass" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="Personne_idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personnes">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="idPersonne" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="prenom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="ville" Type="int" Nullable="false" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="telephone" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="photo" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personnes_CabinetService">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="Cabinet_idCabinet" Type="int" Nullable="false" />
+          <Property Name="idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personnes_Medecin">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="timeStartJob" Type="time" Nullable="false" />
+          <Property Name="timeEndJob" Type="time" Nullable="false" />
+          <Property Name="Specialite_idSpecialite" Type="int" Nullable="false" />
+          <Property Name="idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personnes_Patient">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="dateNaissance" Type="datetime" />
+          <Property Name="nb_warning" Type="int" Nullable="false" />
+          <Property Name="idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personnes_Secretaire">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Name="idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RendezVouss">
+          <Key>
+            <PropertyRef Name="idRendezVous" />
+          </Key>
+          <Property Name="idRendezVous" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="sujet" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="dateDajout" Type="datetime" Nullable="false" />
+          <Property Name="startTime" Type="datetime" Nullable="false" />
+          <Property Name="endTime" Type="datetime" Nullable="false" />
+          <Property Name="motif" Type="nvarchar" MaxLength="500" />
+          <Property Name="accepte" Type="bit" Nullable="false" />
+          <Property Name="Patient_idPersonne" Type="int" Nullable="false" />
+          <Property Name="Medecin_idPersonne" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialites">
+          <Key>
+            <PropertyRef Name="idSpecialite" />
+          </Key>
+          <Property Name="idSpecialite" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="60" />
+          <Property Name="description" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_CabinetCabinetService">
+          <End Role="Cabinets" Type="MedicoModel.Store.Cabinets" Multiplicity="1" />
+          <End Role="Personnes_CabinetService" Type="MedicoModel.Store.Personnes_CabinetService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinets">
+              <PropertyRef Name="idCabinet" />
+            </Principal>
+            <Dependent Role="Personnes_CabinetService">
+              <PropertyRef Name="Cabinet_idCabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CabinetService_inherits_Personne">
+          <End Role="Personnes" Type="MedicoModel.Store.Personnes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personnes_CabinetService" Type="MedicoModel.Store.Personnes_CabinetService" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Personnes_CabinetService">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComptePersonne">
+          <End Role="Personnes" Type="MedicoModel.Store.Personnes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comptes" Type="MedicoModel.Store.Comptes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Comptes">
+              <PropertyRef Name="Personne_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medecin_inherits_CabinetService">
+          <End Role="Personnes_CabinetService" Type="MedicoModel.Store.Personnes_CabinetService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personnes_Medecin" Type="MedicoModel.Store.Personnes_Medecin" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes_CabinetService">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Personnes_Medecin">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedecinRendezVous">
+          <End Role="Personnes_Medecin" Type="MedicoModel.Store.Personnes_Medecin" Multiplicity="1" />
+          <End Role="RendezVouss" Type="MedicoModel.Store.RendezVouss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes_Medecin">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="RendezVouss">
+              <PropertyRef Name="Medecin_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedecinSpecialite">
+          <End Role="Specialites" Type="MedicoModel.Store.Specialites" Multiplicity="1" />
+          <End Role="Personnes_Medecin" Type="MedicoModel.Store.Personnes_Medecin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Specialites">
+              <PropertyRef Name="idSpecialite" />
+            </Principal>
+            <Dependent Role="Personnes_Medecin">
+              <PropertyRef Name="Specialite_idSpecialite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Patient_inherits_Personne">
+          <End Role="Personnes" Type="MedicoModel.Store.Personnes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personnes_Patient" Type="MedicoModel.Store.Personnes_Patient" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Personnes_Patient">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientRendezVous">
+          <End Role="Personnes_Patient" Type="MedicoModel.Store.Personnes_Patient" Multiplicity="1" />
+          <End Role="RendezVouss" Type="MedicoModel.Store.RendezVouss" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes_Patient">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="RendezVouss">
+              <PropertyRef Name="Patient_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Secretaire_inherits_CabinetService">
+          <End Role="Personnes_CabinetService" Type="MedicoModel.Store.Personnes_CabinetService" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Personnes_Secretaire" Type="MedicoModel.Store.Personnes_Secretaire" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Personnes_CabinetService">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Personnes_Secretaire">
+              <PropertyRef Name="idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MedicoModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MedicoContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Personnes" EntityType="MedicoModel.Personne" />
+          <EntitySet Name="Comptes" EntityType="MedicoModel.Compte" />
+          <EntitySet Name="Specialites" EntityType="MedicoModel.Specialite" />
+          <EntitySet Name="RendezVouss" EntityType="MedicoModel.RendezVous" />
+          <EntitySet Name="Cabinets" EntityType="MedicoModel.Cabinet" />
+          <AssociationSet Name="CabinetCabinetService" Association="MedicoModel.CabinetCabinetService">
+            <End Role="Cabinet" EntitySet="Cabinets" />
+            <End Role="CabinetService" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="PatientRendezVous" Association="MedicoModel.PatientRendezVous">
+            <End Role="Patient" EntitySet="Personnes" />
+            <End Role="RendezVous" EntitySet="RendezVouss" />
+          </AssociationSet>
+          <AssociationSet Name="MedecinRendezVous" Association="MedicoModel.MedecinRendezVous">
+            <End Role="Medecin" EntitySet="Personnes" />
+            <End Role="RendezVous" EntitySet="RendezVouss" />
+          </AssociationSet>
+          <AssociationSet Name="MedecinSpecialite" Association="MedicoModel.MedecinSpecialite">
+            <End Role="Medecin" EntitySet="Personnes" />
+            <End Role="Specialite" EntitySet="Specialites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComptePersonne" Association="MedicoModel.FK_ComptePersonne">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Compte" EntitySet="Comptes" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Personne" Abstract="true">
+          <Key>
+            <PropertyRef Name="idPersonne" />
+          </Key>
+          <Property Type="Int32" Name="idPersonne" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="prenom" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="adresse" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="MedicoModel.City" Name="ville" Nullable="false" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="telephone" MaxLength="20" Nullable="false" DefaultValue="??" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="photo" Nullable="false" DefaultValue="/img/avatar.png" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Comptes" Relationship="MedicoModel.FK_ComptePersonne" FromRole="Personne" ToRole="Compte" />
+        </EntityType>
+        <EntityType Name="Compte">
+          <Key>
+            <PropertyRef Name="idCompte" />
+          </Key>
+          <Property Type="Int32" Name="idCompte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="login" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="motDePass" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Type="Boolean" Name="active" Nullable="false" DefaultValue="true" />
+          <Property Type="Int32" Name="Personne_idPersonne" Nullable="false" />
+          <NavigationProperty Name="Personne" Relationship="MedicoModel.FK_ComptePersonne" FromRole="Compte" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="Patient" BaseType="MedicoModel.Personne" >
+          <Property Type="DateTime" Name="dateNaissance" Precision="3" Nullable="true" />
+          <Property Type="Int32" Name="nb_warning" Nullable="false" DefaultValue="0" />
+          <NavigationProperty Name="RendezVouss" Relationship="MedicoModel.PatientRendezVous" FromRole="Patient" ToRole="RendezVous" />
+        </EntityType>
+        <EntityType Name="CabinetService" BaseType="MedicoModel.Personne" Abstract="true" >
+          <NavigationProperty Name="Cabinet" Relationship="MedicoModel.CabinetCabinetService" FromRole="CabinetService" ToRole="Cabinet" />
+          <Property Type="Int32" Name="Cabinet_idCabinet" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Secretaire" BaseType="MedicoModel.CabinetService" />
+        <EntityType Name="Medecin" BaseType="MedicoModel.CabinetService" >
+          <Property Type="Time" Name="timeStartJob" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="timeEndJob" Nullable="false" Precision="7" />
+          <NavigationProperty Name="RendezVouss" Relationship="MedicoModel.MedecinRendezVous" FromRole="Medecin" ToRole="RendezVous" />
+          <NavigationProperty Name="Specialite" Relationship="MedicoModel.MedecinSpecialite" FromRole="Medecin" ToRole="Specialite" />
+          <Property Type="Int32" Name="Specialite_idSpecialite" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Specialite">
+          <Key>
+            <PropertyRef Name="idSpecialite" />
+          </Key>
+          <Property Type="Int32" Name="idSpecialite" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="300" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Medecin" Relationship="MedicoModel.MedecinSpecialite" FromRole="Specialite" ToRole="Medecin" />
+        </EntityType>
+        <EntityType Name="RendezVous">
+          <Key>
+            <PropertyRef Name="idRendezVous" />
+          </Key>
+          <Property Type="Int32" Name="idRendezVous" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="sujet" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="dateDajout" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="startTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="endTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="motif" MaxLength="500" Nullable="true" Unicode="true" FixedLength="false" />
+          <Property Type="Boolean" Name="accepte" Nullable="false" DefaultValue="false" />
+          <NavigationProperty Name="Patient" Relationship="MedicoModel.PatientRendezVous" FromRole="RendezVous" ToRole="Patient" />
+          <Property Type="Int32" Name="Patient_idPersonne" Nullable="false" />
+          <NavigationProperty Name="Medecin" Relationship="MedicoModel.MedecinRendezVous" FromRole="RendezVous" ToRole="Medecin" />
+          <Property Type="Int32" Name="Medecin_idPersonne" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cabinet">
+          <Key>
+            <PropertyRef Name="idCabinet" />
+          </Key>
+          <Property Type="Int32" Name="idCabinet" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="nom" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Type="MedicoModel.City" Name="ville" Nullable="false" />
+          <Property Type="Int32" Name="code_postale" Nullable="true" />
+          <Property Type="String" Name="photo" Nullable="false" DefaultValue="/img/cab/cabinet.png" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="adresse" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="description" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Double" Name="geoLocationX" Nullable="false" />
+          <Property Type="Double" Name="geoLocationY" Nullable="false" />
+          <NavigationProperty Name="CabinetService" Relationship="MedicoModel.CabinetCabinetService" FromRole="Cabinet" ToRole="CabinetService" />
+        </EntityType>
+        <EnumType Name="City">
+          <Member Name="Casablnca" Value="1" />
+          <Member Name="Marrakech" Value="2" />
+          <Member Name="Ouarzazate" Value="3" />
+          <Member Name="Agadir" Value="4" />
+          <Member Name="Rabat" Value="5" />
+          <Member Name="Tanger" Value="6" />
+          <Member Name="Autre" Value="0" />
+        </EnumType>
+        <Association Name="CabinetCabinetService">
+          <End Type="MedicoModel.Cabinet" Role="Cabinet" Multiplicity="1" />
+          <End Type="MedicoModel.CabinetService" Role="CabinetService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cabinet">
+              <PropertyRef Name="idCabinet" />
+            </Principal>
+            <Dependent Role="CabinetService">
+              <PropertyRef Name="Cabinet_idCabinet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PatientRendezVous">
+          <End Type="MedicoModel.Patient" Role="Patient" Multiplicity="1" />
+          <End Type="MedicoModel.RendezVous" Role="RendezVous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patient">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="Patient_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedecinRendezVous">
+          <End Type="MedicoModel.Medecin" Role="Medecin" Multiplicity="1" />
+          <End Type="MedicoModel.RendezVous" Role="RendezVous" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medecin">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="RendezVous">
+              <PropertyRef Name="Medecin_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MedecinSpecialite">
+          <End Type="MedicoModel.Medecin" Role="Medecin" Multiplicity="*" />
+          <End Type="MedicoModel.Specialite" Role="Specialite" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Specialite">
+              <PropertyRef Name="idSpecialite" />
+            </Principal>
+            <Dependent Role="Medecin">
+              <PropertyRef Name="Specialite_idSpecialite" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComptePersonne">
+          <End Type="MedicoModel.Personne" Role="Personne" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="MedicoModel.Compte" Role="Compte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="idPersonne" />
+            </Principal>
+            <Dependent Role="Compte">
+              <PropertyRef Name="Personne_idPersonne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MedicoModelStoreContainer" CdmEntityContainer="MedicoContext">
+    <EntitySetMapping Name="Personnes">
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Personne)">
+        <MappingFragment StoreEntitySet="Personnes">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.CabinetService)">
+        <MappingFragment StoreEntitySet="Personnes_CabinetService">
+                <ScalarProperty Name="Cabinet_idCabinet" ColumnName="Cabinet_idCabinet" />
+                <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Patient)">
+        <MappingFragment StoreEntitySet="Personnes_Patient">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+          <ScalarProperty Name="dateNaissance" ColumnName="dateNaissance" />
+          <ScalarProperty Name="nb_warning" ColumnName="nb_warning" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Medecin)">
+        <MappingFragment StoreEntitySet="Personnes_Medecin">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+          <ScalarProperty Name="timeStartJob" ColumnName="timeStartJob" />
+          <ScalarProperty Name="timeEndJob" ColumnName="timeEndJob" />
+          <ScalarProperty Name="Specialite_idSpecialite" ColumnName="Specialite_idSpecialite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Secretaire)">
+        <MappingFragment StoreEntitySet="Personnes_Secretaire">
+          <ScalarProperty Name="idPersonne" ColumnName="idPersonne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comptes">
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Compte)">
+        <MappingFragment StoreEntitySet="Comptes">
+          <ScalarProperty Name="Personne_idPersonne" ColumnName="Personne_idPersonne" />
+                <ScalarProperty Name="idCompte" ColumnName="idCompte" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="motDePass" ColumnName="motDePass" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Specialites">
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Specialite)">
+        <MappingFragment StoreEntitySet="Specialites">
+          <ScalarProperty Name="idSpecialite" ColumnName="idSpecialite" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RendezVouss">
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.RendezVous)">
+        <MappingFragment StoreEntitySet="RendezVouss">
+          <ScalarProperty Name="idRendezVous" ColumnName="idRendezVous" />
+          <ScalarProperty Name="sujet" ColumnName="sujet" />
+          <ScalarProperty Name="dateDajout" ColumnName="dateDajout" />
+          <ScalarProperty Name="startTime" ColumnName="startTime" />
+          <ScalarProperty Name="endTime" ColumnName="endTime" />
+          <ScalarProperty Name="motif" ColumnName="motif" />
+          <ScalarProperty Name="accepte" ColumnName="accepte" />
+          <ScalarProperty Name="Patient_idPersonne" ColumnName="Patient_idPersonne" />
+          <ScalarProperty Name="Medecin_idPersonne" ColumnName="Medecin_idPersonne" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cabinets">
+      <EntityTypeMapping TypeName="IsTypeOf(MedicoModel.Cabinet)">
+        <MappingFragment StoreEntitySet="Cabinets">
+          <ScalarProperty Name="idCabinet" ColumnName="idCabinet" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="code_postale" ColumnName="code_postale" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="geoLocationX" ColumnName="geoLocationX" />
+          <ScalarProperty Name="geoLocationY" ColumnName="geoLocationY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,144 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Medico.master.cs" Inherits="MEDICO.Medico" %>
+
+<!DOCTYPE html>
+
+<html>
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="wrap">
+        <div class="container" style="padding-top: 10px;">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <!-- LOGO -->
+                        <div class="span3 visible-desktop">
+                            <div class="row-fluid">
+                                <a id="logo" href="/">
+                                    <div class="span4">
+                                        <asp:Image ID="logoImage" ImageUrl="~/img/medico.png" CssClass="img-circle" Style="float: right;" runat="server" />
+                                    </div>
+                                    <div class="span8">
+                                        <h2 style="color: #B81319;">MEDICO</h2>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- MENU BAR -->
+                        <div class="span9 menuwithoutlogo" style="padding-top: 8px;">
+                            <div class="navbar">
+                                <div class="navbar-inner">
+                                    <div class="container">
+                                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </a>
+                                        <!-- Everything you want hidden at 940px or less, place within here -->
+                                        <a class="brand hidden-desktop" href="/">
+                                            <asp:Image ID="logoImageMini" ImageUrl="~/img/medico_mini.png" CssClass="img-circle" runat="server" />
+                                            MEDICO</a>
+                                        <div class="nav-collapse collapse">
+                                            <ul class="nav">
+                                                <li id="home_page">
+                                                    <a href="~/Default.aspx" runat="server">Accueil</a>
+                                                </li>
+                                                <li id="cabinets_page">
+                                                    <a href="~/LesCabinets.aspx" runat="server">Les cabinets</a>
+                                                </li>
+                                                <li id="contact_page">
+                                                    <a href="~/contact.aspx" runat="server">Contactez-nous</a>
+                                                </li>
+                                                <li id="login_page">
+                                                    
+                                                        <% if (Page.User.Identity.IsAuthenticated && Request.Url.AbsolutePath != "/Account/Login.aspx" && Request.Url.AbsolutePath != "/Account/CreatDoctor.aspx" && Request.Url.AbsolutePath != "/Account/CreatPatient.aspx")
+                                                           { %>
+                                                        <a id="A1" href="~/Account/Login.aspx" runat="server" style="padding-left: 7px;padding-right: 7px;">
+                                                        <asp:Image ID="logout_icon" ImageUrl="~/img/logout.png" runat="server" style="width:14px;"/> Se déconnecter
+                                                        </a>
+                                                        <% }else{ %>
+                                                        <a id="A2" href="~/Account/Login.aspx" runat="server">
+                                                        <i class="icon-user"></i> Se connecter
+                                                        </a>
+                                                        <% } %>
+                                                    
+                                                </li>
+                                            </ul>
+                                            <div class="navbar-search pull-right visible-desktop" style="max-width: 170px;">
+                                                <input id="searchboxcabinet" class="search-query" type="text" placeholder="Chercher un cabinet..." style="width: 85%;">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if (Page.User.Identity.IsAuthenticated && Request.Url.AbsolutePath != "/Account/Login.aspx" && Request.Url.AbsolutePath != "/Account/CreatDoctor.aspx" && Request.Url.AbsolutePath != "/Account/CreatPatient.aspx")
+                    { 
+                           if (MEDICO.Data.isMedecin(Page.User.Identity.Name))
+                           {%>
+                    <ul id="user_config_panel" class="nav nav-pills pull-right">
+                        <li id="DocRendezVousMenu">
+                            <a href="/MedecinOps/"><i class="icon-calendar"></i> Consulter les rendez-vous</a>
+                        </li>
+                        <li id="DocSecMenu">
+                            <a href="/MedecinOps/GestionSecretaire.aspx"><i class="icon-user"></i> Gérer Les Secrétaires</a>
+                        </li>
+                        <li id="DocProfileMenu" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+                                <i class="icon-pencil"></i> Editer <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/MedecinOps/MonProfile.aspx"><i class="icon-user"></i> Mon profile</a>
+                                    <a href="/MedecinOps/MonCabinet.aspx"><i class="icon-home"></i> Mon cabinet</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <%} }%>
+                    <% if (Page.User.Identity.IsAuthenticated && Request.Url.AbsolutePath != "/Account/Login.aspx" && Request.Url.AbsolutePath != "/Account/CreatDoctor.aspx" && Request.Url.AbsolutePath != "/Account/CreatPatient.aspx")
+                    { 
+                           if (MEDICO.Data.isPatient(Page.User.Identity.Name))
+                           {%>
+                    <ul id="user_config_panel" class="nav nav-pills pull-right">
+                        <li id="PatRendezVousMenu">
+                            <a href="/PatientOps/"><i class="icon-calendar"></i> Gérer mes rendez-vous</a>
+                        </li>
+                        <li id="PatMakeRdvMenu">
+                            <a href="/PatientOps/Step1.aspx"><i class="icon-plus"></i> Nouveau rendez-vous</a>
+                        </li>
+                    </ul>
+                    <%} }%>
+                    <% if (Page.User.Identity.IsAuthenticated && Request.Url.AbsolutePath != "/Account/Login.aspx" && Request.Url.AbsolutePath != "/Account/CreatDoctor.aspx" && Request.Url.AbsolutePath != "/Account/CreatPatient.aspx")
+                    { 
+                           if (MEDICO.Data.isSecretaire(Page.User.Identity.Name))
+                           {%>
+                    <ul id="user_config_panel" class="nav nav-pills pull-right">
+                        <li id="AppRendezVousMenu">
+                            <a href="/SecretaireOps/"><i class="icon-folder-open"></i> Approuver Les Rendez-vous</a>
+                        </li>
+                        <li id="SecRendezVousMenu">
+                            <a href="/SecretaireOps/LesRendezVous.aspx"><i class="icon-calendar"></i> Consulter les rendez-vous</a>
+                        </li>
+                    </ul>
+                    <%} }%>
+                </div>
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.file-input.js"></script>
+    <script src="/js/ShearchBoxCabinet.js"></script>
+</body>
+</html>
